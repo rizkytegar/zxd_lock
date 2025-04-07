@@ -7,7 +7,7 @@ nonce = Path("password/nonce.txt").read_text().strip().encode()
 
 input_dir = Path("example")
 temp_dir = Path("encrypted")
-result_dir = Path("result")
+result_dir = Path("locked")
 
 temp_dir.mkdir(exist_ok=True)
 result_dir.mkdir(exist_ok=True)
