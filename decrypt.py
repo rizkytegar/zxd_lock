@@ -1,20 +1,13 @@
 from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
-from pathlib import Path
+import binascii
 
-# Path file terenkripsi
-cipher_path = Path("__temp__/v01/example.zxd.lock")
-ciphertext = cipher_path.read_bytes()
-
-# Key dan nonce yang diberikan
+cipher_hex = "632EA096F27B6662A2386DE9F73C5698B51D4E080172B749602FED580A8EFA5F484"
 key = b"gnzLCH7vxt4R8HyxFWipUPIFpcSTw9Ir"
 nonce = b"gnzLCH7vxt4R"
 
-# Dekripsi
-try:
-    chacha = ChaCha20Poly1305(key)
-    plaintext = chacha.decrypt(nonce, ciphertext, None)
+ciphertext = binascii.unhexlify(cipher_hex)
 
-    print("✅ Dekripsi berhasil")
-    Path("decrypted_output.bin").write_bytes(plaintext)
-except Exception as e:
-    print(f"❌ Gagal dekripsi: {e}")
+chacha = ChaCha20Poly1305(key)
+plaintext = chacha.decrypt(nonce, ciphertext, None)
+
+print("✅ Berhasil dekripsi:", plaintext.decode())
