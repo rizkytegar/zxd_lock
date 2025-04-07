@@ -5,7 +5,7 @@ import binascii
 key = Path("password/key.txt").read_text().strip().encode()
 nonce = Path("password/nonce.txt").read_text().strip().encode()
 
-data = Path("result/data.zxd").read_bytes()
+data = Path("result/example.zxd").read_bytes()
 
 try:
     ciphertext = binascii.unhexlify(data.strip())
