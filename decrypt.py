@@ -4,7 +4,7 @@ from pathlib import Path
 key = Path("password/key.txt").read_text().strip().encode()
 nonce = Path("password/nonce.txt").read_text().strip().encode()
 
-input_dir = Path("result")
+input_dir = Path("locked")
 output_dir = Path("decrypted")
 
 output_dir.mkdir(exist_ok=True)
@@ -18,11 +18,9 @@ chacha = ChaCha20Poly1305(key)
 for file in input_dir.glob("*.zxd"):
     encrypted = file.read_bytes()
 
-    # Step 1–3: Konversi biner ke bytes 3x
     for _ in range(3):
         encrypted = bin_to_bytes(encrypted)
 
-    # Step 4: Dekripsi
     plaintext = chacha.decrypt(nonce, encrypted, None)
 
     output_file = output_dir / file.stem
