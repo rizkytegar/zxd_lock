@@ -28,7 +28,7 @@ for file in input_dir.glob("*"):
         for _ in range(3):
             encrypted = bytes_to_bin(encrypted)
 
-        encrypted_path = temp_dir / (file.stem + ".zxd")
+        encrypted_path = temp_dir / (file.name + ".zxd")
         encrypted_path.write_bytes(encrypted)
 
         final_path = result_dir / encrypted_path.name
