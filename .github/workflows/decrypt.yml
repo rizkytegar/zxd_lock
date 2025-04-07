@@ -14,3 +14,8 @@ jobs:
 
       - name: Jalankan dekripsi
         run: python3 decrypt.py
+      - name: Upload hasil decrypt
+        uses: actions/upload-artifact@v4
+        with:
+          name: decrypt-result
+          path: result/
