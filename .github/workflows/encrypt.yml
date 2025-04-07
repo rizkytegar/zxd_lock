@@ -1,0 +1,16 @@
+name: Decrypt ChaCha20 File
+
+on:
+  workflow_dispatch:
+
+jobs:
+  decrypt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: pip install cryptography
+
+      - name: Jalankan enkripsi
+        run: python3 enkrypt.py
