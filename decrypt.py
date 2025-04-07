@@ -2,7 +2,7 @@ from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
 from pathlib import Path
 
 # Path file terenkripsi
-cipher_path = Path("/__temp__/v01/example.zxd.lock")
+cipher_path = Path("__temp__/v01/example.zxd.lock")
 ciphertext = cipher_path.read_bytes()
 
 # Key dan nonce yang diberikan
