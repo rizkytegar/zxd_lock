@@ -1,4 +1,4 @@
-name: Decrypt ChaCha20 File
+name: Encrypt ChaCha20 File
 
 on:
   workflow_dispatch:
