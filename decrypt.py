@@ -2,8 +2,8 @@ from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
 from pathlib import Path
 import binascii
 
-key = b"gnzLCH7vxt4R8HyxFWipUPIFpcSTw9Ir"
-nonce = b"gnzLCH7vxt4R"
+key = Path("password/key.txt").read_text().strip().encode()
+nonce = Path("password/nonce.txt").read_text().strip().encode()
 
 data = Path("example.zxd").read_bytes()
 
