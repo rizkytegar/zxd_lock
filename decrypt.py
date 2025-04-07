@@ -23,7 +23,8 @@ for file in input_dir.glob("*.zxd"):
 
     plaintext = chacha.decrypt(nonce, encrypted, None)
 
-    output_file = output_dir / file.stem
-    output_file.write_bytes(plaintext)
+    original_name = file.name.removesuffix(".zxd")
+    output_path = output_dir / original_name
+    output_path.write_bytes(plaintext)
 
-    print(f"✅ Didekripsi: {file.name} -> {output_file}")
+    print(f"✅ Didekripsi: {file.name} -> {output_path}")
