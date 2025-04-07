@@ -15,19 +15,8 @@ jobs:
       - name: Jalankan enkripsi
         run: python3 encrypt.py
 
-      - name: Upload hasil enkripsi ke folder result
+      - name: Upload hasil enkripsi
         uses: actions/upload-artifact@v4
         with:
           name: encrypted-result
-          path: result/
-      - name: Commit dan push hasil ke repositori
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          git config user.name "rizkytegar"
-          git config user.email "mail.rizkytegar@gmail.com"
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
-          git add result/
-          git status
-          git diff --cached --quiet || git commit -m "Add encrypted result files" || echo "❗ Tidak ada perubahan untuk di-commit"
-          git push
+          path: locked/
