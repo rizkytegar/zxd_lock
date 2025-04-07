@@ -5,7 +5,7 @@ key = Path("password/key.txt").read_text().strip().encode()
 nonce = Path("password/nonce.txt").read_text().strip().encode()
 
 input_dir = Path("locked")
-output_dir = Path("decrypted")
+output_dir = Path("result")
 
 output_dir.mkdir(exist_ok=True)
 
