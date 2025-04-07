@@ -13,4 +13,4 @@ jobs:
         run: pip install cryptography
 
       - name: Jalankan enkripsi
-        run: python3 enkrypt.py
+        run: python3 encrypt.py
