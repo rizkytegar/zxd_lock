@@ -20,11 +20,13 @@ jobs:
         with:
           name: encrypted-result
           path: result/
-
       - name: Commit dan push hasil ke repositori
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git
           git add result/
           git status
           git diff --cached --quiet || git commit -m "Add encrypted result files" || echo "❗ Tidak ada perubahan untuk di-commit"
