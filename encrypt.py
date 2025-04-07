@@ -14,14 +14,24 @@ result_dir.mkdir(exist_ok=True)
 
 chacha = ChaCha20Poly1305(key)
 
+def bytes_to_bin(data):
+    return ''.join(format(byte, '08b') for byte in data).encode()
+
 for file in input_dir.glob("*"):
     if file.is_file():
         data = file.read_bytes()
+
+        # Step 1: Enkripsi pertama
         encrypted = chacha.encrypt(nonce, data, None)
+
+        # Step 2–4: Konversi ke biner 3x
+        for _ in range(3):
+            encrypted = bytes_to_bin(encrypted)
+
         encrypted_path = temp_dir / (file.stem + ".zxd")
         encrypted_path.write_bytes(encrypted)
 
         final_path = result_dir / encrypted_path.name
         shutil.move(str(encrypted_path), final_path)
 
-        print(f"✅ Terenkripsi dan dipindah: {file.name} -> {final_path}")
+        print(f"✅ Enkripsi selesai dan dipindah: {file.name} -> {final_path}")
